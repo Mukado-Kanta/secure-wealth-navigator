@@ -75,6 +75,20 @@ export const GoalPlanner: React.FC = () => {
     <div className="space-y-8">
       {/* プリセット選択 */}
       <div className="flex flex-wrap items-center gap-2 p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm text-sm">
+        <button
+          onClick={() =>
+            setGoal({
+              ...goal,
+              currentAge: 19,
+              goalAge: 23,
+              targetAmount: 500,
+              initialAmount: 300,
+            })
+          }
+          className="px-3 py-1.5 rounded-lg bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950 dark:hover:bg-emerald-900 text-emerald-800 dark:text-emerald-200 transition-colors text-xs font-bold border border-emerald-300 dark:border-emerald-800"
+        >
+          🎓 23歳大学卒業時 500万円 (4年)
+        </button>
         <span className="flex items-center text-slate-500 font-medium mr-2">
           <Compass className="w-4 h-4 mr-1.5 text-indigo-500" />
           目標プリセット:
