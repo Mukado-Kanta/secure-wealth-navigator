@@ -17,40 +17,40 @@ import { AssetItem, AssetCategory } from '../../types';
 import { ASSET_CATEGORIES, formatManYen } from '../../utils/finance';
 import { parseRakutenSecuritiesCsv } from '../../utils/csvParser';
 
-const STORAGE_KEY = 'wealth_builder_my_assets_v1';
+const STORAGE_KEY = 'secure_wealth_my_assets_v2';
 
-// 初期サンプルデータ
+// 初期サンプルデータ (Kanata確定資産アンカー 307万円モデル)
 const INITIAL_ASSETS: AssetItem[] = [
   {
     id: '1',
-    name: 'メガバンク 普通預金',
+    name: '普通預金 (生活防衛 ＆ 宇部転居予備資金)',
     category: 'cash',
-    amount: 120,
-    memo: '生活防衛資金',
+    amount: 55,
+    memo: 'メガバンク/ゆうちょ (キャッシュ比率18%)',
     updatedAt: new Date().toISOString(),
   },
   {
     id: '2',
     name: 'eMAXIS Slim 全世界株式 (オール・カントリー)',
     category: 'foreign_stocks',
-    amount: 350,
-    memo: '楽天証券 (新NISAつみたて)',
+    amount: 170,
+    memo: '楽天証券 (新NISA つみたて・成長枠 主軸)',
     updatedAt: new Date().toISOString(),
   },
   {
     id: '3',
-    name: 'eMAXIS Slim 米国株式 (S&P500)',
-    category: 'foreign_stocks',
-    amount: 220,
-    memo: '楽天証券 (成長投資枠)',
+    name: '国内高配当株 (三菱商事 8058 ほか)',
+    category: 'domestic_stocks',
+    amount: 73,
+    memo: '楽天証券 (配当キャッシュフロー用)',
     updatedAt: new Date().toISOString(),
   },
   {
     id: '4',
-    name: '楽天・全米株式インデックス・ファンド (楽天VTI)',
+    name: '米国株式 / 高配当ETF (SPYD/VYM等)',
     category: 'foreign_stocks',
-    amount: 140,
-    memo: '楽天証券 (特定口座)',
+    amount: 9,
+    memo: '楽天証券 (米ドル資産)',
     updatedAt: new Date().toISOString(),
   },
 ];

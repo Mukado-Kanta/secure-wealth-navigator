@@ -26,22 +26,23 @@ import {
 import { RealisticMonteCarloInput, SavingsStage } from '../../types';
 import { run5000MonthlyMonteCarlo, formatManYen } from '../../utils/finance';
 
-const STORAGE_KEY = 'wealth_builder_realistic_input_v1';
+const STORAGE_KEY = 'secure_wealth_realistic_input_v2';
 
 const DEFAULT_REALISTIC_INPUT: RealisticMonteCarloInput = {
-  currentAge: 30,
+  currentAge: 19, // 山口大学工学部1年 (現在地)
   targetAge: 65,
-  initialAmount: 100, // 100万円
-  expectedReturn: 6.0, // 年利 6.0%
-  volatility: 18.0, // 年率標準偏差 18.0% (全世界株式・S&P500水準)
+  initialAmount: 300, // 現在の実質純金融資産 307万円ベース
+  expectedReturn: 6.0, // 年利 6.0% (全世界株・S&P500実質リターン)
+  volatility: 18.0, // 年率標準偏差 18.0%
   stages: [
-    { id: '1', fromAge: 30, toAge: 40, monthlyDeposit: 5.0 }, // 30〜40歳: 月5万
-    { id: '2', fromAge: 40, toAge: 50, monthlyDeposit: 10.0 }, // 40〜50歳: 月10万
-    { id: '3', fromAge: 50, toAge: 55, monthlyDeposit: 4.0 }, // 50〜55歳: 教育費ピークで月4万に減額
-    { id: '4', fromAge: 55, toAge: 65, monthlyDeposit: 15.0 }, // 55〜65歳: 教育終了ラストスパート月15万
+    { id: '1', fromAge: 19, toAge: 23, monthlyDeposit: 2.0 }, // 19〜23歳: 山大学部生期・宇部転居・経験投資優先 月2万
+    { id: '2', fromAge: 23, toAge: 28, monthlyDeposit: 6.0 }, // 23〜28歳: 社会人・若手エンジニア加速期 月6万
+    { id: '3', fromAge: 28, toAge: 35, monthlyDeposit: 10.0 }, // 28〜35歳: 昇給・新NISA最速枠埋め期 月10万
+    { id: '4', fromAge: 35, toAge: 45, monthlyDeposit: 6.0 }, // 35〜45歳: ライフイベント・住宅・家族支出期 月6万
+    { id: '5', fromAge: 45, toAge: 65, monthlyDeposit: 15.0 }, // 45〜65歳: 最終資産完成ラストスパート 月15万
   ],
-  targetAmount: 3000, // 目標 3,000万円
-  goalAge: 60, // 60歳時点で達成したい
+  targetAmount: 3000, // 30代で3,000万円到達目標
+  goalAge: 35, // 35歳目標
   crashEnabled: true, // ランダム暴落ショック
   crashAnnualProbability: 5.0, // 年間5%の確率で暴落発生（約20年に1回）
   crashDropMin: 25, // -25%

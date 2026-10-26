@@ -23,15 +23,15 @@ import {
   formatManYen,
 } from '../../utils/finance';
 
-const STORAGE_KEY = 'wealth_builder_compound_unified_v1';
+const STORAGE_KEY = 'secure_wealth_compound_input_v2';
 
 const DEFAULT_COMPOUND_INPUT = {
-  currentAge: 30,
-  years: 25,
-  initialAmount: 200, // 200万円
-  monthlyDeposit: 10, // 毎月10万円
-  expectedReturn: 6.0, // 年利6%
-  volatility: 18.0, // 年率リスク18%
+  currentAge: 19, // 山口大学工学部1年
+  years: 30,
+  initialAmount: 300, // 現在の純資産300万円
+  monthlyDeposit: 3, // 学部生〜初期平均3万円
+  expectedReturn: 6.0,
+  volatility: 18.0,
   crashEnabled: true,
   crashAnnualProbability: 5.0,
   applyNisa: true,

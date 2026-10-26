@@ -24,12 +24,12 @@ import {
   formatManYen,
 } from '../../utils/finance';
 
-const STORAGE_KEY = 'wealth_builder_goal_monte_carlo_v1';
+const STORAGE_KEY = 'secure_wealth_goal_monte_carlo_v2';
 
 const DEFAULT_GOAL_INPUT: GoalPlannerMonteCarloInput = {
-  currentAge: 30,
-  goalAge: 55, // 55歳で達成
-  initialAmount: 100, // 100万円
+  currentAge: 19, // 山口大学工学部1年
+  goalAge: 35, // 35歳で準富裕層達成
+  initialAmount: 300, // 現在の実質純資産300万円
   targetAmount: 3000, // 目標 3,000万円
   expectedReturn: 6.0, // 年利 6.0%
   volatility: 18.0, // 年率リスク 18.0%
