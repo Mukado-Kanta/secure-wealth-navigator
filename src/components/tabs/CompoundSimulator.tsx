@@ -23,15 +23,15 @@ import {
   formatManYen,
 } from '../../utils/finance';
 
-const STORAGE_KEY = 'secure_wealth_compound_input_v2';
+const STORAGE_KEY = 'secure_wealth_compound_input_v3';
 
 const DEFAULT_COMPOUND_INPUT = {
   currentAge: 19, // 山口大学工学部1年
   years: 30,
   initialAmount: 300, // 現在の純資産300万円
   monthlyDeposit: 3, // 学部生〜初期平均3万円
-  expectedReturn: 6.0,
-  volatility: 18.0,
+  expectedReturn: 7.2,
+  volatility: 16.5,
   crashEnabled: true,
   crashAnnualProbability: 5.0,
   applyNisa: true,
@@ -116,7 +116,7 @@ export const CompoundSimulator: React.FC = () => {
               initialAmount: 300,
               monthlyDeposit: 15,
               expectedReturn: 6.5,
-              volatility: 18.0,
+              volatility: 16.5,
               years: 20,
             })
           }
@@ -129,8 +129,8 @@ export const CompoundSimulator: React.FC = () => {
             applyPreset({
               initialAmount: 100,
               monthlyDeposit: 10,
-              expectedReturn: 6.0,
-              volatility: 18.0,
+              expectedReturn: 7.2,
+              volatility: 16.5,
               years: 25,
             })
           }

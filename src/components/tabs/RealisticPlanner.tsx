@@ -26,14 +26,14 @@ import {
 import { RealisticMonteCarloInput, SavingsStage } from '../../types';
 import { run5000MonthlyMonteCarlo, formatManYen } from '../../utils/finance';
 
-const STORAGE_KEY = 'secure_wealth_realistic_input_v2';
+const STORAGE_KEY = 'secure_wealth_realistic_input_v3';
 
 const DEFAULT_REALISTIC_INPUT: RealisticMonteCarloInput = {
   currentAge: 19, // 山口大学工学部1年 (現在地)
   targetAge: 65,
   initialAmount: 300, // 現在の実質純金融資産 307万円ベース
-  expectedReturn: 6.0, // 年利 6.0% (全世界株・S&P500実質リターン)
-  volatility: 18.0, // 年率標準偏差 18.0%
+  expectedReturn: 7.2, // 年利 6.0% (全世界株・S&P500実質リターン)
+  volatility: 16.5, // 年率標準偏差 18.0%
   stages: [
     { id: '1', fromAge: 19, toAge: 23, monthlyDeposit: 2.0 }, // 19〜23歳: 山大学部生期・宇部転居・経験投資優先 月2万
     { id: '2', fromAge: 23, toAge: 28, monthlyDeposit: 6.0 }, // 23〜28歳: 社会人・若手エンジニア加速期 月6万
@@ -135,7 +135,7 @@ export const RealisticPlanner: React.FC = () => {
   // プリセット適用
   const applyAssetPreset = (preset: 'all_country' | 'sp500' | 'balanced') => {
     if (preset === 'all_country') {
-      setInput((prev) => ({ ...prev, expectedReturn: 6.0, volatility: 18.0 }));
+      setInput((prev) => ({ ...prev, expectedReturn: 7.2, volatility: 18.0 }));
     } else if (preset === 'sp500') {
       setInput((prev) => ({ ...prev, expectedReturn: 7.5, volatility: 20.0 }));
     } else if (preset === 'balanced') {

@@ -95,6 +95,8 @@ export function run5000MonthlyMonteCarlo(
   const taxableBalances = new Float64Array(NUM_PATHS);
   nisaBalances.fill(initialNisa);
   taxableBalances.fill(initialTaxable);
+  const recoveryMonthsRemaining = new Int16Array(NUM_PATHS);
+  const recoveryBoostPerMonth = new Float32Array(NUM_PATHS);
 
   // 元本追跡（決定論的）
   let nisaPrincipal = initialNisa;
@@ -156,19 +158,30 @@ export function run5000MonthlyMonteCarlo(
     for (let p = 0; p < NUM_PATHS; p++) {
       // 1. 月次ボラティリティ
       const z = getStandardNormal();
-      const monthFactor = Math.exp(drift + volSqrtDt * z);
+      let monthFactor = Math.exp(drift + volSqrtDt * z);
+
+      // 回復ラリー中のブースト加算
+      if (recoveryMonthsRemaining[p] > 0) {
+        monthFactor += recoveryBoostPerMonth[p];
+        recoveryMonthsRemaining[p]--;
+      }
 
       let nb = nisaBalances[p] * monthFactor;
       let tb = taxableBalances[p] * monthFactor;
 
-      // 2. ランダム暴落ショック
-      if (annualCrashProb > 0 && Math.random() < monthlyCrashProb) {
+      // 2. ランダム暴落ショック ＆ V字回復（平均回帰）のトリガー
+      if (annualCrashProb > 0 && recoveryMonthsRemaining[p] === 0 && Math.random() < monthlyCrashProb) {
         const dropPercent =
           input.crashDropMin +
           Math.random() * (input.crashDropMax - input.crashDropMin);
         const dropRatio = 1 - dropPercent / 100;
         nb *= dropRatio;
         tb *= dropRatio;
+
+        // 暴落後12〜18ヶ月の回復反発ラリーを設定
+        const recMonths = 12 + Math.floor(Math.random() * 7);
+        recoveryMonthsRemaining[p] = recMonths;
+        recoveryBoostPerMonth[p] = ((dropPercent / 100) / recMonths) * 1.05;
       }
 
       // 3. 拠出加算
